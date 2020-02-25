@@ -2,9 +2,15 @@
 include_once __DIR__."../../../core/ini.php";
 
 $user = new User();
-if(!$user->hasPermission('admin')){
+$user->findUser();
+$user->username = 'aaaaa';
+$user->update();
+
+echo $user->username;
+if(!$user->findUser()->hasPermission('admin')){
     Redirect::to('index.php');
 }
+$deleteUSer = new User();
 ?>
 <!doctype html>
 <html lang="en">
@@ -16,6 +22,6 @@ if(!$user->hasPermission('admin')){
     <title>Document</title>
 </head>
 <body>
-Hello <?php echo $user->data()->username?> on Admin page
+Hello <?php echo $user->username?> on Admin page
 </body>
 </html>

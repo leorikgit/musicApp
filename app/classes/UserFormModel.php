@@ -65,14 +65,12 @@ class UserFormModel extends FormModel
 
         $password_again = $this->getAttribute('password_again');
         if(!Validation::required($password)){
-            $this->setError('password', 'Password is required.');
+            $this->setError('password_again', 'password_again is required.');
         }
         if(!Validation::match($password, $password_again)){
-            $this->setError('password', 'Password must be unique.');
+            $this->setError('password_again', 'Paspassword_againsword must be unique.');
         }
-        $this->validate();
-        return $this;
-
+        return $this->validate();
     }
     public function validate()
     {

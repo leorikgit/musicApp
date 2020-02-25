@@ -2,6 +2,8 @@
 include __DIR__ .'../../core/ini.php';
 
 $user = new User();
+$users = $user->find(1);
+echo $users->id;
 ?>
 <!doctype html>
 <html lang="en">

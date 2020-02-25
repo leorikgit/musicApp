@@ -57,11 +57,11 @@ if( Input::exist('post') && Input::get('register')){
         if($userFormModel->register()) {
 
             $user =  new User();
-            $user->register(array(
-                    'username' => $input['username'],
-                    'email' => $input['email'],
-                    'password' => $input['password'],
-            ));
+            $user->username = $input['username'];
+            $user->email = $input['email'];
+            $user->password = $input['password'];
+
+            $user->register();
                 Session::flash('success', 'Account has been created!');
 
                 Redirect::to('login.php');
@@ -100,10 +100,14 @@ if( Input::exist('post') && Input::get('register')){
                         <input type="Email" value="<?php echo Input::get('email')?>" name="email" id="email" placeholder="e.g vidavi@gmail.com">
                     </p>
                     <p>
+                        <span class="validationError"><?php echo $userFormModel->getError('password')?$userFormModel->getError('password'):''?></span>
+
                         <label for="password">Password</label>
                         <input type="password" value="" name="password" id="password" placeholder="Yout password">
                     </p>
                     <p>
+                        <span class="validationError"><?php echo $userFormModel->getError('password_again')?$userFormModel->getError('password_again'):''?></span>
+
                         <label for="password_again">Password again</label>
                         <input type="password" value="" name="password_again" id="password_again" placeholder="Your password again">
                     </p>
